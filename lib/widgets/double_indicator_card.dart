@@ -39,7 +39,8 @@ class DoubleIndicatorCard extends StatelessWidget {
     required this.highColor,
   });
 
-  Color getValueColor(double value, double minValue, double midValue, double maxValue) {
+  Color getValueColor(
+      double value, double minValue, double midValue, double maxValue) {
     if (value < (minValue + midValue) / 2) {
       return lowColor;
     } else if (value < midValue) {
@@ -62,7 +63,7 @@ class DoubleIndicatorCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         side: BorderSide(color: Colors.grey.withOpacity(0.2), width: 1),
       ),
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -73,7 +74,14 @@ class DoubleIndicatorCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    height: 0.20,
+                    letterSpacing: -0.50,
+                  ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.info_outline, size: 19),

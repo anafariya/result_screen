@@ -27,7 +27,13 @@ class _ResultScreenState extends State<ResultScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Header(),
+        title: Column(
+          children: [
+            const SizedBox(height: 60),
+            Header(),
+            const SizedBox(height: 40),
+          ],
+        ),
         automaticallyImplyLeading: false, // Removes default back arrow
       ),
       backgroundColor: Colors.white, // Set the background color to white
@@ -67,40 +73,46 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-              RichText(
-              text: TextSpan(
+            const SizedBox(height: 24),
+            RichText(
+              text: const TextSpan(
                 text: 'Your wellbeing score is ',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black,
                 ),
                 children: <TextSpan>[
                   if (overallScore > 70)
-                    const TextSpan(
+                    TextSpan(
                       text: 'Excellent',
                       style: TextStyle(color: Colors.green),
                     )
                   else if (overallScore > 40)
-                    const TextSpan(
+                    TextSpan(
                       text: 'Good',
                       style: TextStyle(color: Colors.blue),
                     )
                   else
-                    const TextSpan(
+                    TextSpan(
                       text: 'Poor',
                       style: TextStyle(color: Colors.red),
                     ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             const Text(
               'The measured indicators are not intended for medical use',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 10,
+                fontWeight: FontWeight.w300,
+                fontFamily: 'Poppins',
+                height: 0.24,
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 13),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -142,7 +154,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 11),
             const IndicatorCard(
               title: 'Heart Rate',
               unit: 'BPM',
@@ -155,7 +167,7 @@ class _ResultScreenState extends State<ResultScreen> {
               midColor: Colors.orange,
               highColor: Colors.red,
             ),
-            const SizedBox(height: 10), // Add a small gap between cards
+            const SizedBox(height: 24), // Add a small gap between cards
             const DoubleIndicatorCard(
               title: 'Blood Pressure',
               unit1: 'Systolic',
@@ -174,7 +186,7 @@ class _ResultScreenState extends State<ResultScreen> {
               midColor: Colors.orange,
               highColor: Colors.red,
             ),
-            const SizedBox(height: 10), // Add a small gap between cards
+            const SizedBox(height: 24), // Add a small gap between cards
             const IndicatorCard(
               title: 'Oxygen Level',
               unit: 'SpO2',
@@ -187,7 +199,7 @@ class _ResultScreenState extends State<ResultScreen> {
               midColor: Colors.orange,
               highColor: Colors.green,
             ),
-            const SizedBox(height: 10), // Add a small gap between cards
+            const SizedBox(height: 24), // Add a small gap between cards
             const IndicatorCard(
               title: 'Hemoglobin',
               unit: 'g/dl',
@@ -200,7 +212,7 @@ class _ResultScreenState extends State<ResultScreen> {
               midColor: Colors.orange,
               highColor: Colors.green,
             ),
-            const SizedBox(height: 10), // Add a small gap between cards
+            const SizedBox(height: 24), // Add a small gap between cards
             const IndicatorCard(
               title: 'Glycated Hemoglobin',
               unit: 'HbA1c',
@@ -213,24 +225,55 @@ class _ResultScreenState extends State<ResultScreen> {
               midColor: Color.fromRGBO(218, 76, 104, 1),
               highColor: Color.fromRGBO(220, 125, 87, 1),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: const Color.fromRGBO(220, 125, 87, 1),
+            const SizedBox(height: 23),
+            Container(
+              width: 247,
+              height: 48,
+              padding: const EdgeInsets.only(
+                  left: 50.0,
+                  top: 12.0,
+                  right: 20.0,
+                  bottom: 12.0), // Adjust values as needed
+              clipBehavior: Clip.antiAlias,
+              decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: const BorderSide(
-                    color: Color.fromRGBO(220, 125, 87, 1),
-                  ),
+                  side: const BorderSide(width: 1, color: Color(0xFFDC7D57)),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: const Text("Back to Home page"),
+              child: const Row(
+                // Remove mainAxisAlignment
+                mainAxisSize: MainAxisSize.max, // Set max width
+                crossAxisAlignment:
+                    CrossAxisAlignment.center, // Center vertically
+                children: [
+                  Text(
+                    'Back to Home page',
+                    textAlign:
+                        TextAlign.center, // Center text within its line box
+                    style: TextStyle(
+                      color: Color(0xFFDC7D57),
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      height: 0, // Remove line height if needed
+                    ),
+                  ),
+                ],
+              ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("Take scan again"),
+
+            const SizedBox(height: 16),
+            const Text(
+              'Take scan again',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFF213D68),
+                fontSize: 16,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+                height: 0,
+              ),
             ),
           ],
         ),

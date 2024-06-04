@@ -9,20 +9,23 @@ class Header extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            icon: const Icon(Icons.menu, size: 30), // Increased icon size
+            icon: const Icon(Icons.menu, size: 24), 
             onPressed: () {
-              // Add functionality here
             },
           ),
           const Text(
-            'Face Scan Results',
+            'Face Scan Results  ',
             style: TextStyle(
-              fontSize: 23,
-              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 16,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+              height: 0.08,
+              letterSpacing: -0.50,
             ),
           ),
           const CircleAvatar(
-            radius: 22,
+            radius: 20,
             backgroundImage: AssetImage('assets/images/ana3.jpg'),
           ),
         ],
