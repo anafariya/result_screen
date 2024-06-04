@@ -134,30 +134,56 @@ class IndicatorCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Row(
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value - v1) / (v2 - v1),
-                          color: color1,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value - v1) / (v2 - v1),
+                              color: color1,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value - v2) / (v3 - v2),
+                              color: color2,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value - v3) / (v4 - v3),
+                              color: color3,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value - v2) / (v3 - v2),
-                          color: color2,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value - v3) / (v4 - v3),
-                          color: color3,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
+                      const SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "$v1",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$v2",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$v3",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$v4",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
                       ),
                     ],
                   ),

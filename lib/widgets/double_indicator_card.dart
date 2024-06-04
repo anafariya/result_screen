@@ -104,36 +104,62 @@ class DoubleIndicatorCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Row(
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value1 - v1) / (v2 - v1),
-                          color: value1 >= v1 && value1 < v2
-                              ? getValueColor(value1, v1, midValue1, v4)
-                              : Colors.grey[300]!,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value1 - v1) / (v2 - v1),
+                              color: value1 >= v1 && value1 < v2
+                                  ? getValueColor(value1, v1, midValue1, v4)
+                                  : Colors.grey[300]!,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value1 - v2) / (v3 - v2),
+                              color: value1 >= v2 && value1 < v3
+                                  ? getValueColor(value1, v1, midValue1, v4)
+                                  : Colors.grey[300]!,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value1 - v3) / (v4 - v3),
+                              color: value1 >= v3 && value1 < v4
+                                  ? getValueColor(value1, v1, midValue1, v4)
+                                  : Colors.grey[300]!,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value1 - v2) / (v3 - v2),
-                          color: value1 >= v2 && value1 < v3
-                              ? getValueColor(value1, v1, midValue1, v4)
-                              : Colors.grey[300]!,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value1 - v3) / (v4 - v3),
-                          color: value1 >= v3 && value1 < v4
-                              ? getValueColor(value1, v1, midValue1, v4)
-                              : Colors.grey[300]!,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
+                      const SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "$v1",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$v2",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$v3",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$v4",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -161,36 +187,62 @@ class DoubleIndicatorCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Row(
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value2 - x1) / (x2 - x1),
-                          color: value2 >= x1 && value2 < x2
-                              ? getValueColor(value2, x1, midValue2, x4)
-                              : Colors.grey[300]!,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value2 - x1) / (x2 - x1),
+                              color: value2 >= x1 && value2 < x2
+                                  ? getValueColor(value2, x1, midValue2, x4)
+                                  : Colors.grey[300]!,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value2 - x2) / (x3 - x2),
+                              color: value2 >= x2 && value2 < x3
+                                  ? getValueColor(value2, x1, midValue2, x4)
+                                  : Colors.grey[300]!,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: CurvedEndLinearProgressIndicator(
+                              value: (value2 - x3) / (x4 - x3),
+                              color: value2 >= x3 && value2 < x4
+                                  ? getValueColor(value2, x1, midValue2, x4)
+                                  : Colors.grey[300]!,
+                              backgroundColor: Colors.grey[300]!,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value2 - x2) / (x3 - x2),
-                          color: value2 >= x2 && value2 < x3
-                              ? getValueColor(value2, x1, midValue2, x4)
-                              : Colors.grey[300]!,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: CurvedEndLinearProgressIndicator(
-                          value: (value2 - x3) / (x4 - x3),
-                          color: value2 >= x3 && value2 < x4
-                              ? getValueColor(value2, x1, midValue2, x4)
-                              : Colors.grey[300]!,
-                          backgroundColor: Colors.grey[300]!,
-                        ),
+                      const SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "$x1",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$x2",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$x3",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          Text(
+                            "$x4",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
                       ),
                     ],
                   ),

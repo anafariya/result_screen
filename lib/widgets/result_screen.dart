@@ -23,7 +23,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const overallScore = 75; // This should be the actual overall score
+    const overallScore = 95; // This should be the actual overall score
 
     return Scaffold(
       appBar: AppBar(
