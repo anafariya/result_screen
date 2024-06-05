@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,15 +13,13 @@ class Header extends StatelessWidget {
             onPressed: () {
             },
           ),
-          const Text(
+           Text(
             'Face Scan Results  ',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               color: Colors.black,
               fontSize: 16,
-              fontFamily: 'Poppins',
               fontWeight: FontWeight.w500,
-              height: 0.08,
-              letterSpacing: -0.50,
+              // letterSpacing: -0.50,
             ),
           ),
           const CircleAvatar(

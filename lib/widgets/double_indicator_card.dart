@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'curved_end_linear_progress_indicator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DoubleIndicatorCard extends StatelessWidget {
   final String title;
@@ -18,8 +18,11 @@ class DoubleIndicatorCard extends StatelessWidget {
   final Color lowColor;
   final Color midColor;
   final Color highColor;
+  final String dialogTitle;
+  final String dialogDescription;
+  late String dialogContent;
 
-  const DoubleIndicatorCard({
+  DoubleIndicatorCard({
     super.key,
     required this.title,
     required this.unit1,
@@ -37,7 +40,16 @@ class DoubleIndicatorCard extends StatelessWidget {
     required this.lowColor,
     required this.midColor,
     required this.highColor,
-  });
+    required this.dialogTitle,
+    required this.dialogDescription,
+  }) {
+    dialogContent = _generateDefaultContent(
+        title, value1, value2); // Initialize in the constructor body
+  }
+
+  String _generateDefaultContent(String title, double value1, double value2) {
+    return "Your $title is ${value1.toStringAsFixed(0)} / ${value2.toStringAsFixed(0)}";
+  }
 
   Color getValueColor(
       double value, double minValue, double midValue, double maxValue) {
@@ -48,6 +60,81 @@ class DoubleIndicatorCard extends StatelessWidget {
     } else {
       return highColor;
     }
+  }
+
+  void _showInfoDialog(
+      BuildContext context, String title, String content, String description) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ClipRRect(
+          borderRadius:
+              BorderRadius.circular(10.0), // Set the desired border radius here
+          child: AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 24, // Set the desired size here
+                      height: 24,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Color(0xFFD9D9D9)),
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: const Icon(Icons.close),
+                          color: Colors.black,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  content,
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+                Text(
+                  description,
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -65,31 +152,33 @@ class DoubleIndicatorCard extends StatelessWidget {
       ),
       margin: const EdgeInsets.symmetric(vertical: 0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 9),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 10,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
-                    height: 0.20,
-                    letterSpacing: -0.50,
+            Padding(
+              padding: EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.info_outline, size: 19),
-                  onPressed: () {
-                    // Add your information dialog or action here
-                  },
-                ),
-              ],
+                  IconButton(
+                    icon: const Icon(Icons.info_outline, size: 11),
+                    onPressed: () {
+                      // Show the dialog for value1
+                      _showInfoDialog(
+                          context, title, dialogContent, dialogDescription);
+                    },
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             Row(
@@ -99,14 +188,17 @@ class DoubleIndicatorCard extends StatelessWidget {
                   children: [
                     Text(
                       "$value1",
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
                         color: getValueColor(value1, v1, midValue1, v4),
                       ),
                     ),
                     Text(
                       unit1,
-                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                      style: GoogleFonts.poppins(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black),
                     ),
                   ],
                 ),
@@ -114,143 +206,253 @@ class DoubleIndicatorCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CurvedEndLinearProgressIndicator(
-                              value: (value1 - v1) / (v2 - v1),
-                              color: value1 >= v1 && value1 < v2
-                                  ? getValueColor(value1, v1, midValue1, v4)
-                                  : Colors.grey[300]!,
-                              backgroundColor: Colors.grey[300]!,
-                            ),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 20, left: 5, bottom: 7),
+                        child: SizedBox(
+                          width: 285,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(width: 10), // Added SizedBox
+                              Expanded(
+                                child: Text(
+                                  'Low',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Medium',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'High',
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.black),
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: CurvedEndLinearProgressIndicator(
-                              value: (value1 - v2) / (v3 - v2),
-                              color: value1 >= v2 && value1 < v3
-                                  ? getValueColor(value1, v1, midValue1, v4)
-                                  : Colors.grey[300]!,
-                              backgroundColor: Colors.grey[300]!,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: CurvedEndLinearProgressIndicator(
-                              value: (value1 - v3) / (v4 - v3),
-                              color: value1 >= v3 && value1 < v4
-                                  ? getValueColor(value1, v1, midValue1, v4)
-                                  : Colors.grey[300]!,
-                              backgroundColor: Colors.grey[300]!,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "$v1",
-                            style: const TextStyle(fontSize: 12),
+                      Container(
+                        width: 275,
+                        padding: const EdgeInsets.only(bottom: 3),
+                        child: Stack(
+                          children: [
+                            // Background container with curved edges
+                            Container(
+                              width: double.infinity,
+                              height: 7,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            // Row with the three colored containers with curved edges
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: value1 < v2
+                                          ? lowColor
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 2),
+                                Expanded(
+                                  child: Container(
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: value1 >= v2 && value1 < v3
+                                          ? midColor
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 2),
+                                Expanded(
+                                  child: Container(
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: value1 >= v3
+                                          ? highColor
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 7),
+                        child: SizedBox(
+                          width: 270,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "$v1",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 8, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                "$v2",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 8, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                "$v3",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 8, fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                "$v4",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 8, fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "$v2",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          Text(
-                            "$v3",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          Text(
-                            "$v4",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 10),
             Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "$value2",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: getValueColor(value2, x1, midValue2, x4),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "$value2",
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: getValueColor(value2, x1, midValue2, x4),
+                        ),
                       ),
-                    ),
-                    Text(
-                      unit2,
-                      style: const TextStyle(fontSize: 16, color: Colors.black),
-                    ),
-                  ],
+                      Text(
+                        unit2,
+                        style: GoogleFonts.poppins(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CurvedEndLinearProgressIndicator(
-                              value: (value2 - x1) / (x2 - x1),
-                              color: value2 >= x1 && value2 < x2
-                                  ? getValueColor(value2, x1, midValue2, x4)
-                                  : Colors.grey[300]!,
-                              backgroundColor: Colors.grey[300]!,
+                      Container(
+                        width: 275,
+                        padding: const EdgeInsets.only(bottom: 3),
+                        child: Stack(
+                          children: [
+                            // Background container with curved edges
+                            Container(
+                              width: double.infinity,
+                              height: 7,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: CurvedEndLinearProgressIndicator(
-                              value: (value2 - x2) / (x3 - x2),
-                              color: value2 >= x2 && value2 < x3
-                                  ? getValueColor(value2, x1, midValue2, x4)
-                                  : Colors.grey[300]!,
-                              backgroundColor: Colors.grey[300]!,
+                            // Row with the three colored containers with curved edges
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: value2 < x2
+                                          ? lowColor
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 2),
+                                Expanded(
+                                  child: Container(
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: value2 >= x2 && value2 < x3
+                                          ? midColor
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 2),
+                                Expanded(
+                                  child: Container(
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: value2 >= x3
+                                          ? highColor
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: CurvedEndLinearProgressIndicator(
-                              value: (value2 - x3) / (x4 - x3),
-                              color: value2 >= x3 && value2 < x4
-                                  ? getValueColor(value2, x1, midValue2, x4)
-                                  : Colors.grey[300]!,
-                              backgroundColor: Colors.grey[300]!,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "$x1",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          Text(
-                            "$x2",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          Text(
-                            "$x3",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          Text(
-                            "$x4",
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      SizedBox(
+                        width: 270,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "$x1",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 8, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "$x2",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 8, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "$x3",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 8, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "$x4",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 8, fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
