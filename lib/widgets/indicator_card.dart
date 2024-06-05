@@ -13,6 +13,9 @@ class IndicatorCard extends StatelessWidget {
   final Color midColor;
   final Color highColor;
   final String dialogTitle;
+  final String lowValue;
+  final String midValue;
+  final String highValue;
   final String dialogDescription;
   late String dialogContent; // New property for the content
 
@@ -25,6 +28,9 @@ class IndicatorCard extends StatelessWidget {
     required this.v2,
     required this.v3,
     required this.v4,
+    required this.lowValue,
+    required this.midValue,
+    required this.highValue,
     required this.lowColor,
     required this.midColor,
     required this.highColor,
@@ -157,8 +163,8 @@ class IndicatorCard extends StatelessWidget {
                 ),
               ],
             ),
-            const Padding(
-              padding:  EdgeInsets.only(
+             Padding(
+              padding:  const EdgeInsets.only(
                   left: 75,
                   bottom: 0), // Set your desired left padding here
               child:  SizedBox(
@@ -168,9 +174,9 @@ class IndicatorCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'Low',
+                        lowValue,
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 8,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -179,9 +185,9 @@ class IndicatorCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        'Medium',
+                        midValue,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style:  GoogleFonts.poppins(
                           fontSize: 8,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -190,9 +196,9 @@ class IndicatorCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        'High',
+                        highValue,
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 8,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -213,7 +219,7 @@ class IndicatorCard extends StatelessWidget {
                       Text(
                         "$value",
                         style:
-                            TextStyle(fontSize: 14, color: getValueColor(value)),
+                            GoogleFonts.poppins(fontSize: 14, color: getValueColor(value)),
                       ),
                       Text(
                         unit,

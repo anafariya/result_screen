@@ -15,6 +15,9 @@ class DoubleIndicatorCard extends StatelessWidget {
   final double x2;
   final double x3;
   final double x4;
+  final String lowValue;
+  final String midValue;
+  final String highValue;
   final Color lowColor;
   final Color midColor;
   final Color highColor;
@@ -29,6 +32,9 @@ class DoubleIndicatorCard extends StatelessWidget {
     required this.unit2,
     required this.value1,
     required this.value2,
+    required this.lowValue,
+    required this.midValue,
+    required this.highValue,
     required this.v1,
     required this.v2,
     required this.v3,
@@ -183,30 +189,33 @@ class DoubleIndicatorCard extends StatelessWidget {
             const SizedBox(height: 10),
             Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "$value1",
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        color: getValueColor(value1, v1, midValue1, v4),
+                Padding(
+                  padding: const EdgeInsets.only(left: 2,bottom: 3),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "$value1",
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: getValueColor(value1, v1, midValue1, v4),
+                        ),
                       ),
-                    ),
-                    Text(
-                      unit1,
-                      style: GoogleFonts.poppins(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black),
-                    ),
-                  ],
+                      Text(
+                        unit1,
+                        style: GoogleFonts.poppins(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     children: [
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.only(right: 20, left: 5, bottom: 7),
                         child: SizedBox(
                           width: 285,
@@ -216,9 +225,9 @@ class DoubleIndicatorCard extends StatelessWidget {
                               SizedBox(width: 10), // Added SizedBox
                               Expanded(
                                 child: Text(
-                                  'Low',
+                                  lowValue,
                                   textAlign: TextAlign.left,
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       fontSize: 8,
                                       fontWeight: FontWeight.w300,
                                       color: Colors.black),
@@ -226,9 +235,9 @@ class DoubleIndicatorCard extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Medium',
+                                  midValue,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       fontSize: 8,
                                       fontWeight: FontWeight.w300,
                                       color: Colors.black),
@@ -236,9 +245,9 @@ class DoubleIndicatorCard extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  'High',
+                                  highValue,
                                   textAlign: TextAlign.right,
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       fontSize: 8,
                                       fontWeight: FontWeight.w300,
                                       color: Colors.black),
@@ -344,7 +353,7 @@ class DoubleIndicatorCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 6),
+                  padding: const EdgeInsets.only(bottom: 8,left: 3),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
