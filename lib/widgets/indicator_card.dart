@@ -16,6 +16,7 @@ class IndicatorCard extends StatelessWidget {
   final String lowValue;
   final String midValue;
   final String highValue;
+  final String resultValue;
   final String dialogDescription;
   late String dialogContent; // New property for the content
 
@@ -24,6 +25,7 @@ class IndicatorCard extends StatelessWidget {
     required this.title,
     required this.unit,
     required this.value,
+    required this.resultValue,
     required this.v1,
     required this.v2,
     required this.v3,
@@ -217,7 +219,7 @@ class IndicatorCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "$value",
+                        "$value $resultValue",
                         style:
                             GoogleFonts.poppins(fontSize: 14, color: getValueColor(value)),
                       ),

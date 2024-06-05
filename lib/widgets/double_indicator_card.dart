@@ -145,8 +145,6 @@ class DoubleIndicatorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double midValue1 = (v2 + v3) / 2;
-    double midValue2 = (x2 + x3) / 2;
 
     return Card(
       color: Colors.white,
@@ -194,16 +192,25 @@ class DoubleIndicatorCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "$value1",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: value1 > v3
-                          ? highColor
-                          : value1 > v2
-                              ?midColor
-                              : lowColor,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "$value1",
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              color: value1 > v3
+                              ? highColor
+                              : value1 > v2
+                                  ?midColor
+                                  : lowColor,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2),
+                            child: Text("mmHG",style: GoogleFonts.poppins(fontSize: 6),),
+                          )
+                        ],
                       ),
                       Text(
                         unit1,
@@ -361,16 +368,25 @@ class DoubleIndicatorCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "$value2",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: value2 > x3
-                          ? highColor
-                          : value2 > x2
-                              ?midColor
-                              : lowColor,
-                        ),
+                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "$value2",
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              color: value1 > v3
+                              ? highColor
+                              : value1 > v2
+                                  ?midColor
+                                  : lowColor,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 2),
+                            child: Text("mmHG",style: GoogleFonts.poppins(fontSize: 6),),
+                          )
+                        ],
                       ),
                       Text(
                         unit2,
