@@ -60,7 +60,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       progressColor: overallScore > 70
                           ? Colors.green
                           : overallScore > 40
-                              ?const Color.fromRGBO(33, 61, 104, 0.8)
+                              ? const Color.fromRGBO(33, 61, 104, 0.8)
                               : const Color.fromRGBO(218, 76, 104, 1),
                       center: Transform.rotate(
                         angle:
@@ -95,12 +95,14 @@ class _ResultScreenState extends State<ResultScreen> {
                     else if (overallScore > 40)
                       TextSpan(
                         text: 'Good',
-                        style: GoogleFonts.poppins(color: const Color.fromRGBO(33, 61, 104, 0.8)),
+                        style: GoogleFonts.poppins(
+                            color: const Color.fromRGBO(33, 61, 104, 0.8)),
                       )
                     else
                       TextSpan(
                         text: 'Poor',
-                        style: GoogleFonts.poppins(color: const Color.fromRGBO(218, 76, 104, 1)),
+                        style: GoogleFonts.poppins(
+                            color: const Color.fromRGBO(218, 76, 104, 1)),
                       ),
                   ],
                 ),
@@ -230,38 +232,45 @@ class _ResultScreenState extends State<ResultScreen> {
                     "A normal glycated haemoglobin level, also called an A1C level, is below 5.7%.",
               ),
               const SizedBox(height: 23),
-              Container(
-                width: 247,
-                height: 48,
-                padding: const EdgeInsets.only(
-                    left: 50.0,
-                    top: 12.0,
-                    right: 20.0,
-                    bottom: 12.0), // Adjust values as needed
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(width: 1, color: Color(0xFFDC7D57)),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Row(
-                  // Remove mainAxisAlignment
-                  mainAxisSize: MainAxisSize.max, // Set max width
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center, // Center vertically
-                  children: [
-                    Text(
-                      'Back to Home page',
-                      textAlign:
-                          TextAlign.center, // Center text within its line box
-                      style: GoogleFonts.poppins(
-                        color: Color(0xFFDC7D57),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+              Padding(
+                padding: const EdgeInsets.only(left: 44,right: 44),
+                child: OutlinedButton(
+                  onPressed: () {
+                  },
+                  style: ButtonStyle(
+                    padding: WidgetStateProperty.all(
+                      const EdgeInsets.symmetric(
+                          vertical: 6.0, horizontal: 11.0),
+                    ),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        side: const BorderSide(
+                          width: 1,
+                          color: Color(0xFFDC7D57),
+                        ),
                       ),
                     ),
-                  ],
+                    side: WidgetStateProperty.all(
+                      const BorderSide(
+                        color: Color(0xFFDC7D57),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: SizedBox(
+                    height: 48,
+                    child: Center(
+                      child: Text(
+                        'Back to Home page',
+                        style: GoogleFonts.poppins(
+                          color: const Color(0xFFDC7D57),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
 

@@ -145,40 +145,42 @@ class IndicatorCard extends StatelessWidget {
       ),
       margin: const EdgeInsets.symmetric(vertical: 0),
       child: Padding(
-        padding: const EdgeInsets.only(left:9),
+        padding: const EdgeInsets.only(left: 9),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(title,
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                    )),
-                IconButton(
-                  icon: const Icon(Icons.info_outline, size: 11),
-                  onPressed: () => _showInfoDialog(context, title,
-                      dialogContent, dialogDescription), // Show the dialog
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 9,right:12 ,top:7,bottom:5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(title,
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                      )),
+                  GestureDetector(
+                    onTap: () => _showInfoDialog(context, title, dialogContent,
+                        dialogDescription), // Show the dialog
+                    child: const Icon(Icons.info_outline, size: 11),
+                  ),
+                ],
+              ),
             ),
-             Padding(
-              padding:  const EdgeInsets.only(
-                  left: 75,
-                  bottom: 0), // Set your desired left padding here
-              child:  SizedBox(
-                width: 255, // Set your desired width here
-                child:  Row(
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 112, bottom: 0), // Set your desired left padding here
+              child: SizedBox(
+                width: 233, // Set your desired width here
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Text(
                         lowValue,
                         textAlign: TextAlign.left,
-                        style:  GoogleFonts.poppins(
+                        style: GoogleFonts.poppins(
                           fontSize: 8,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -189,7 +191,7 @@ class IndicatorCard extends StatelessWidget {
                       child: Text(
                         midValue,
                         textAlign: TextAlign.center,
-                        style:  GoogleFonts.poppins(
+                        style: GoogleFonts.poppins(
                           fontSize: 8,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -214,14 +216,14 @@ class IndicatorCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 5,bottom: 10),
+                  padding: const EdgeInsets.only(left: 27, bottom: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "$value $resultValue",
-                        style:
-                            GoogleFonts.poppins(fontSize: 14, color: getValueColor(value)),
+                        style: GoogleFonts.poppins(
+                            fontSize: 14, color: getValueColor(value)),
                       ),
                       Text(
                         unit,
@@ -238,13 +240,12 @@ class IndicatorCard extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        width: 275,
+                        width: 235,
                         padding: const EdgeInsets.only(bottom: 3),
                         child: Stack(
                           children: [
                             // Background container with curved edges
                             Container(
-                              
                               width: double.infinity,
                               height: 7,
                               decoration: BoxDecoration(
@@ -294,7 +295,7 @@ class IndicatorCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 270,
+                        width: 231,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

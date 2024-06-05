@@ -145,7 +145,6 @@ class DoubleIndicatorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       color: Colors.white,
       elevation: 5,
@@ -161,25 +160,21 @@ class DoubleIndicatorCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.zero,
+              padding:
+                  const EdgeInsets.only(left: 9, right: 12, top: 7, bottom: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.info_outline, size: 11),
-                    onPressed: () {
-                      // Show the dialog for value1
-                      _showInfoDialog(
-                          context, title, dialogContent, dialogDescription);
-                    },
+                  Text(title,
+                      style: GoogleFonts.poppins(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                      )),
+                  GestureDetector(
+                    onTap: () => _showInfoDialog(context, title, dialogContent,
+                        dialogDescription), // Show the dialog
+                    child: const Icon(Icons.info_outline, size: 11),
                   ),
                 ],
               ),
@@ -188,7 +183,7 @@ class DoubleIndicatorCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 2,bottom: 3),
+                  padding: const EdgeInsets.only(left: 27, bottom: 3),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -200,15 +195,18 @@ class DoubleIndicatorCard extends StatelessWidget {
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: value1 > v3
-                              ? highColor
-                              : value1 > v2
-                                  ?midColor
-                                  : lowColor,
+                                  ? highColor
+                                  : value1 > v2
+                                      ? midColor
+                                      : lowColor,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 2),
-                            child: Text("mmHG",style: GoogleFonts.poppins(fontSize: 6),),
+                            child: Text(
+                              "mmHG",
+                              style: GoogleFonts.poppins(fontSize: 6),
+                            ),
                           )
                         ],
                       ),
@@ -226,10 +224,11 @@ class DoubleIndicatorCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                       Padding(
-                        padding: const EdgeInsets.only(right: 20, left: 5, bottom: 7),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 20, bottom: 10),
                         child: SizedBox(
-                          width: 285,
+                          width: 233,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -269,7 +268,7 @@ class DoubleIndicatorCard extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 275,
+                        width: 235,
                         padding: const EdgeInsets.only(bottom: 3),
                         child: Stack(
                           children: [
@@ -328,7 +327,7 @@ class DoubleIndicatorCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 7),
                         child: SizedBox(
-                          width: 270,
+                          width: 231,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -364,11 +363,11 @@ class DoubleIndicatorCard extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8,left: 3),
+                  padding: const EdgeInsets.only(bottom: 8, left: 27),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -376,15 +375,18 @@ class DoubleIndicatorCard extends StatelessWidget {
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: value1 > v3
-                              ? highColor
-                              : value1 > v2
-                                  ?midColor
-                                  : lowColor,
+                                  ? highColor
+                                  : value1 > v2
+                                      ? midColor
+                                      : lowColor,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 2),
-                            child: Text("mmHG",style: GoogleFonts.poppins(fontSize: 6),),
+                            child: Text(
+                              "mmHG",
+                              style: GoogleFonts.poppins(fontSize: 6),
+                            ),
                           )
                         ],
                       ),
@@ -403,7 +405,7 @@ class DoubleIndicatorCard extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        width: 275,
+                        width: 235,
                         padding: const EdgeInsets.only(bottom: 3),
                         child: Stack(
                           children: [
@@ -460,7 +462,7 @@ class DoubleIndicatorCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 270,
+                        width: 231,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
