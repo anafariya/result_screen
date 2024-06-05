@@ -198,7 +198,11 @@ class DoubleIndicatorCard extends StatelessWidget {
                         "$value1",
                         style: GoogleFonts.poppins(
                           fontSize: 14,
-                          color: getValueColor(value1, v1, midValue1, v4),
+                          color: value1 > v3
+                          ? highColor
+                          : value1 > v2
+                              ?midColor
+                              : lowColor,
                         ),
                       ),
                       Text(
@@ -216,13 +220,13 @@ class DoubleIndicatorCard extends StatelessWidget {
                   child: Column(
                     children: [
                        Padding(
-                        padding: EdgeInsets.only(right: 20, left: 5, bottom: 7),
+                        padding: const EdgeInsets.only(right: 20, left: 5, bottom: 7),
                         child: SizedBox(
                           width: 285,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(width: 10), // Added SizedBox
+                              const SizedBox(width: 10), // Added SizedBox
                               Expanded(
                                 child: Text(
                                   lowValue,
@@ -361,7 +365,11 @@ class DoubleIndicatorCard extends StatelessWidget {
                         "$value2",
                         style: GoogleFonts.poppins(
                           fontSize: 14,
-                          color: getValueColor(value2, x1, midValue2, x4),
+                          color: value2 > x3
+                          ? highColor
+                          : value2 > x2
+                              ?midColor
+                              : lowColor,
                         ),
                       ),
                       Text(

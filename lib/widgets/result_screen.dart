@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../widgets/chips.dart';
 
 class ResultScreen extends StatefulWidget {
-const ResultScreen({Key? key}) : super(key: key);
+  const ResultScreen({Key? key}) : super(key: key);
 
   @override
   _ResultScreenState createState() => _ResultScreenState();
@@ -24,7 +24,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const overallScore = 95; // This should be the actual overall score
+    const overallScore = 60; // This should be the actual overall score
 
     return Scaffold(
       appBar: AppBar(
@@ -55,15 +55,19 @@ class _ResultScreenState extends State<ResultScreen> {
                     child: CurvedEndCircularProgressIndicator(
                       radius: 55.0,
                       lineWidth: 5.0,
-                      percent: 0.95,
+                      percent: overallScore / 100,
                       backgroundColor: Colors.transparent,
-                      progressColor: Colors.green,
+                      progressColor: overallScore > 70
+                          ? Colors.green
+                          : overallScore > 40
+                              ?const Color.fromRGBO(33, 61, 104, 0.8)
+                              : const Color.fromRGBO(218, 76, 104, 1),
                       center: Transform.rotate(
                         angle:
                             3.14, // Rotate 180 degrees in radians (pi radians)
-                        child: const Text(
+                        child: Text(
                           '$overallScore/100',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 22,
                             fontWeight: FontWeight.normal,
                           ),
@@ -82,7 +86,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     fontWeight: FontWeight.w300,
                     color: Colors.black,
                   ),
-                  children:  <TextSpan>[
+                  children: <TextSpan>[
                     if (overallScore > 70)
                       TextSpan(
                         text: 'Excellent',
@@ -91,12 +95,12 @@ class _ResultScreenState extends State<ResultScreen> {
                     else if (overallScore > 40)
                       TextSpan(
                         text: 'Good',
-                        style: TextStyle(color: Colors.blue),
+                        style: GoogleFonts.poppins(color: const Color.fromRGBO(33, 61, 104, 0.8)),
                       )
                     else
                       TextSpan(
                         text: 'Poor',
-                        style: TextStyle(color: Colors.red),
+                        style: GoogleFonts.poppins(color: const Color.fromRGBO(218, 76, 104, 1)),
                       ),
                   ],
                 ),
@@ -122,7 +126,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ],
               ),
               const SizedBox(height: 11),
-               IndicatorCard(
+              IndicatorCard(
                 title: 'Heart Rate',
                 unit: 'BPM',
                 value: 65,
@@ -137,10 +141,11 @@ class _ResultScreenState extends State<ResultScreen> {
                 midValue: 'Normal',
                 highValue: 'High',
                 dialogTitle: "Heart Rate",
-                dialogDescription: "A normal resting heart rate for adults ranges from 60 to 100 beats per minute ",
+                dialogDescription:
+                    "A normal resting heart rate for adults ranges from 60 to 100 beats per minute ",
               ),
               const SizedBox(height: 24), // Add a small gap between cards
-               DoubleIndicatorCard(
+              DoubleIndicatorCard(
                 title: 'Blood Pressure',
                 unit1: 'Systolic',
                 unit2: 'Diastolic',
@@ -157,14 +162,15 @@ class _ResultScreenState extends State<ResultScreen> {
                 midColor: Colors.green,
                 lowColor: Colors.orange,
                 highColor: const Color.fromRGBO(220, 125, 87, 1),
-                 lowValue: 'Low',
+                lowValue: 'Low',
                 midValue: 'Normal',
                 highValue: 'High',
-                dialogTitle:'Blood Pressure' ,
-                dialogDescription: "A normal blood pressure reading for a healthy young adult is between 90/60 and 120/80 mmHg.  ",
+                dialogTitle: 'Blood Pressure',
+                dialogDescription:
+                    "A normal blood pressure reading for a healthy young adult is between 90/60 and 120/80 mmHg.  ",
               ),
               const SizedBox(height: 24), // Add a small gap between cards
-               IndicatorCard(
+              IndicatorCard(
                 title: 'Oxygen Level',
                 unit: 'SpO2',
                 value: 98,
@@ -175,14 +181,14 @@ class _ResultScreenState extends State<ResultScreen> {
                 lowColor: Colors.red,
                 midColor: Colors.orange,
                 highColor: Colors.green,
-                 lowValue: 'Low',
+                lowValue: 'Low',
                 midValue: 'Concerning',
                 highValue: 'Normal',
                 dialogTitle: "Oxygen Level",
                 dialogDescription: "Oxygen level should be more than 94.",
               ),
               const SizedBox(height: 24), // Add a small gap between cards
-               IndicatorCard(
+              IndicatorCard(
                 title: 'Hemoglobin',
                 unit: 'g/dl',
                 value: 15,
@@ -193,14 +199,15 @@ class _ResultScreenState extends State<ResultScreen> {
                 highColor: Colors.red,
                 lowColor: Colors.orange,
                 midColor: Colors.green,
-                 lowValue: 'Low',
+                lowValue: 'Low',
                 midValue: 'Normal',
                 highValue: 'High',
-                   dialogTitle: "Haemoglobin",
-                dialogDescription: "The normal Hb level for males is 14 to 18 g/dl; that for females is 12 to 16 g/dl.",
+                dialogTitle: "Haemoglobin",
+                dialogDescription:
+                    "The normal Hb level for males is 14 to 18 g/dl; that for females is 12 to 16 g/dl.",
               ),
               const SizedBox(height: 24), // Add a small gap between cards
-               IndicatorCard(
+              IndicatorCard(
                 title: 'Glycated Hemoglobin',
                 unit: 'HbA1c',
                 value: 7.0,
@@ -211,11 +218,12 @@ class _ResultScreenState extends State<ResultScreen> {
                 lowColor: Colors.green,
                 highColor: const Color.fromRGBO(218, 76, 104, 1),
                 midColor: const Color.fromRGBO(220, 125, 87, 1),
-                 lowValue: 'Normal',
+                lowValue: 'Normal',
                 midValue: 'Prediabetic',
                 highValue: 'Diabetes',
-                 dialogTitle: "Glycated Haemoglobin",
-                dialogDescription: "A normal glycated haemoglobin level, also called an A1C level, is below 5.7%.",
+                dialogTitle: "Glycated Haemoglobin",
+                dialogDescription:
+                    "A normal glycated haemoglobin level, also called an A1C level, is below 5.7%.",
               ),
               const SizedBox(height: 23),
               Container(
@@ -233,7 +241,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                child: const Row(
+                child: Row(
                   // Remove mainAxisAlignment
                   mainAxisSize: MainAxisSize.max, // Set max width
                   crossAxisAlignment:
@@ -243,7 +251,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       'Back to Home page',
                       textAlign:
                           TextAlign.center, // Center text within its line box
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Color(0xFFDC7D57),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -254,10 +262,10 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
 
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 'Take scan again',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Color(0xFF213D68),
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
