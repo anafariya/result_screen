@@ -5,16 +5,17 @@ class DoubleIndicatorCard extends StatelessWidget {
   final String title;
   final String unit1;
   final String unit2;
-  final double value1;
-  final double value2;
-  final double v1;
-  final double v2;
-  final double v3;
-  final double v4;
-  final double x1;
-  final double x2;
-  final double x3;
-  final double x4;
+  final String highValuePlusSign;
+  final int value1;
+  final int value2;
+  final int v1;
+  final int v2;
+  final int v3;
+  final int v4;
+  final int x1;
+  final int x2;
+  final int x3;
+  final int x4;
   final String lowValue;
   final String midValue;
   final String highValue;
@@ -35,6 +36,7 @@ class DoubleIndicatorCard extends StatelessWidget {
     required this.lowValue,
     required this.midValue,
     required this.highValue,
+    required this.highValuePlusSign,
     required this.v1,
     required this.v2,
     required this.v3,
@@ -53,12 +55,12 @@ class DoubleIndicatorCard extends StatelessWidget {
         title, value1, value2); // Initialize in the constructor body
   }
 
-  String _generateDefaultContent(String title, double value1, double value2) {
+  String _generateDefaultContent(String title, int value1, int value2) {
     return "Your $title is ${value1.toStringAsFixed(0)} / ${value2.toStringAsFixed(0)}";
   }
 
   Color getValueColor(
-      double value, double minValue, double midValue, double maxValue) {
+      int value, int minValue, int midValue, int maxValue) {
     if (value < (minValue + midValue) / 2) {
       return lowColor;
     } else if (value < midValue) {
@@ -274,7 +276,6 @@ class DoubleIndicatorCard extends StatelessWidget {
                           children: [
                             // Background container with curved edges
                             Container(
-                              width: double.infinity,
                               height: 7,
                               decoration: BoxDecoration(
                                 color: Colors.grey[300],
@@ -347,7 +348,7 @@ class DoubleIndicatorCard extends StatelessWidget {
                                     fontSize: 8, fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                "$v4",
+                                "$v4$highValuePlusSign",
                                 style: GoogleFonts.poppins(
                                     fontSize: 8, fontWeight: FontWeight.w500),
                               ),
@@ -411,7 +412,6 @@ class DoubleIndicatorCard extends StatelessWidget {
                           children: [
                             // Background container with curved edges
                             Container(
-                              width: double.infinity,
                               height: 7,
                               decoration: BoxDecoration(
                                 color: Colors.grey[300],
@@ -482,7 +482,7 @@ class DoubleIndicatorCard extends StatelessWidget {
                                   fontSize: 8, fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "$x4",
+                              "$x4$highValuePlusSign",
                               style: GoogleFonts.poppins(
                                   fontSize: 8, fontWeight: FontWeight.w500),
                             ),

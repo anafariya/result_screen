@@ -5,6 +5,7 @@ import '../widgets/indicator_card.dart';
 import 'curved_end_circular_progress_indicator.dart'; // Import your custom widget
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/chips.dart';
+import '../widgets//haemoglobin_indicator_card.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({Key? key}) : super(key: key);
@@ -143,6 +144,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 lowValue: 'Low',
                 midValue: 'Normal',
                 highValue: 'High',
+                highValuePlusSign: "+",
                 dialogTitle: "Heart Rate",
                 dialogDescription:
                     "A normal resting heart rate for adults ranges from 60 to 100 beats per minute ",
@@ -168,6 +170,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 lowValue: 'Low',
                 midValue: 'Normal',
                 highValue: 'High',
+                highValuePlusSign: "+",
                 dialogTitle: 'Blood Pressure',
                 dialogDescription:
                     "A normal blood pressure reading for a healthy young adult is between 90/60 and 120/80 mmHg.  ",
@@ -188,11 +191,12 @@ class _ResultScreenState extends State<ResultScreen> {
                 lowValue: 'Low',
                 midValue: 'Concerning',
                 highValue: 'Normal',
+                highValuePlusSign: "",
                 dialogTitle: "Oxygen Level",
                 dialogDescription: "Oxygen level should be more than 94.",
               ),
               const SizedBox(height: 24), // Add a small gap between cards
-              IndicatorCard(
+              HaemoglobinIndicatorCard(
                 title: 'Hemoglobin',
                 unit: 'g/dl',
                 value: 15,
@@ -212,7 +216,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     "The normal Hb level for males is 14 to 18 g/dl; that for females is 12 to 16 g/dl.",
               ),
               const SizedBox(height: 24), // Add a small gap between cards
-              IndicatorCard(
+              HaemoglobinIndicatorCard(
                 title: 'Glycated Hemoglobin',
                 unit: 'HbA1c',
                 value: 7.0,
@@ -233,10 +237,9 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
               const SizedBox(height: 23),
               Padding(
-                padding: const EdgeInsets.only(left: 44,right: 44),
+                padding: const EdgeInsets.only(left: 44, right: 44),
                 child: OutlinedButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   style: ButtonStyle(
                     padding: WidgetStateProperty.all(
                       const EdgeInsets.symmetric(

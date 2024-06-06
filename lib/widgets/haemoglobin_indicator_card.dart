@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class IndicatorCard extends StatelessWidget {
+class HaemoglobinIndicatorCard extends StatelessWidget {
   final String title;
   final String unit;
-  final int value;
-  final int v1;
-  final int v2;
-  final int v3;
-  final int v4;
-  final String highValuePlusSign;
-
+  final double value;
+  final double v1;
+  final double v2;
+  final double v3;
+  final double v4;
   final Color lowColor;
   final Color midColor;
   final Color highColor;
@@ -22,7 +20,7 @@ class IndicatorCard extends StatelessWidget {
   final String dialogDescription;
   late String dialogContent; // New property for the content
 
-  IndicatorCard({
+  HaemoglobinIndicatorCard({
     super.key,
     required this.title,
     required this.unit,
@@ -35,7 +33,6 @@ class IndicatorCard extends StatelessWidget {
     required this.lowValue,
     required this.midValue,
     required this.highValue,
-    required this.highValuePlusSign,
     required this.lowColor,
     required this.midColor,
     required this.highColor,
@@ -46,11 +43,11 @@ class IndicatorCard extends StatelessWidget {
         title, value); // Initialize in the constructor body
   }
 
-  String _generateDefaultContent(String title, int value) {
+  String _generateDefaultContent(String title, double value) {
     return "Your $title is $value";
   }
 
-  Color getValueColor(int value) {
+  Color getValueColor(double value) {
     if (value >= v1 && value < v2) {
       return lowColor;
     } else if (value >= v2 && value < v3) {
@@ -153,8 +150,7 @@ class IndicatorCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 9, right: 12, top: 7, bottom: 5),
+              padding: const EdgeInsets.only(left: 9,right:12 ,top:7,bottom:5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -319,7 +315,7 @@ class IndicatorCard extends StatelessWidget {
                                   fontSize: 8, fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "$v4$highValuePlusSign",
+                              "$v4",
                               style: GoogleFonts.poppins(
                                   fontSize: 8, fontWeight: FontWeight.w500),
                             ),
